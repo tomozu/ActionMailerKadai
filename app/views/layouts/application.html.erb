@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Daily Aloha</title>
+<meta name="viewport" content="width=device-width">
+<!--meta http-equiv="Content-Type" content="text/html; charset=utf-8" /-->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <header>
+  <ul>
+   <li><%= link_to "top page", root_path %></li>
+   <li><%= link_to "blog index", blogs_path %></li>
+   <li><%= link_to "blog post", new_blog_path %></li>
+  </ul>
+ </header>
+ 
+ <section class="main-header">
+ <%= image_tag "IMG_1303.JPG", class:"image_area" %>
+ </section>
+ 
+ <% flash.each do |key, value| %>
+   <%= content_tag(:div, value, class: "#{key}") %>
+ <% end %>
+ 
+ <% if logged_in? %>
+      <%= link_to "Profile", user_path(current_user.id) %>
+      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_path %>
+      <%= link_to "Login", new_session_path %>
+    <% end %>
+ 
+<%= yield %>
+
+  <footer>
+    <p>2018年6月期</p>
+    <p>Tomoko Kanamori</p>
+  </footer>
+  
+</body>
+</html>
