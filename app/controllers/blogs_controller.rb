@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only:[:show, :edit, :update, :destroy]
+  before_action :require_login
   
   def index
     @blogs = Blog.all
@@ -59,9 +60,9 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
   
-  def current_user
+  def require_login
     unless logged_in?
-    redirect_to session_path
+      redirect_to new_session_path
     end
   end
 end
