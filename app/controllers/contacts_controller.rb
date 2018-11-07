@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
         ContactMailer.contact_mail(@contact).deliver
-        format.html { redirect_to @contact, notice: 'Blog has been posted.' }
+        format.html { redirect_to @contact, notice: 'contact was successfully created.' }
         # format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Blog has been updated.' }
+        format.html { redirect_to @contact, notice: 'contact was successfully created.' }
       else
         format.html { render :edit }
       end
