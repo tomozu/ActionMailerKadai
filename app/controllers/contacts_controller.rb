@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Blog has been updated.' }
+        format.html { redirect_to @contact, notice: 'contact was successfully created.' }
       else
         format.html { render :edit }
       end
@@ -55,7 +55,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Blog has been destroyed.' }
+      format.html { redirect_to contacts_url, notice: 'contact was successfully created.' }
     end
   end
 

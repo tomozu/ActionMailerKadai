@@ -18,6 +18,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     if @blog.save
+      BlogMailer.blog_mail(@blog).deliver
       redirect_to blogs_path,notice:"ブログを作成しました！"
     else
       render'new'
@@ -41,6 +42,7 @@ class BlogsController < ApplicationController
   
   def update
     @blog = Blog.find(params[:id])
+    
     if @blog.update(blog_params)
       redirect_to blogs_path, notice:"ブログを編集しました！"
     else
