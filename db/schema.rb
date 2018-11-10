@@ -20,11 +20,9 @@ ActiveRecord::Schema.define(version: 20181109075207) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
     t.bigint "user_id"
     t.string "image"
     t.index ["user_id"], name: "index_blogs_on_user_id"
-    t.index ["users_id"], name: "index_blogs_on_users_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -38,9 +36,8 @@ ActiveRecord::Schema.define(version: 20181109075207) do
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "feeds", force: :cascade do |t|
+    t.index ["blog_id"], name: "index_favorites_on_blog_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +53,5 @@ ActiveRecord::Schema.define(version: 20181109075207) do
   end
 
   add_foreign_key "blogs", "users"
-  add_foreign_key "blogs", "users", column: "users_id"
   add_foreign_key "users", "users"
 end
