@@ -60,3 +60,7 @@ body {
   text-align: center;
   margin-bottom: 10em;
 }
+
+.file_image {
+  display: inline !important;
+}
